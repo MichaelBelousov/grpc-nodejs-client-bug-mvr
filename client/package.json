@@ -1,0 +1,58 @@
+{
+  "name": "imodel-unity-example",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "start": "node lib/Main.js --input=demo.bim",
+    "start-selector": "node lib/Main.js",
+    "build": "concurrently npm:build:ts npm:build:proto",
+    "build:ts": "tsc -b",
+    "build:proto": "concurrently npm:build:proto:copy-proto",
+    "build:proto:copy-proto": "cpx ../server/service.proto lib/",
+    "//build:proto:ts": "# currently disabled because of differing type generation methods and problems",
+    "build:proto:ts": "protoc -I ../server ../server/service.proto --js_out=import_style=commonjs:src --grpc-web_out=import_style=commonjs+dts,mode=grpcweb:src && rimraf src/mvr_grpc_web_pb.js src/mvr_pb.js",
+    "watch": "concurrently npm:watch:ts npm:watch:proto",
+    "watch:ts": "tsc -b -w",
+    "watch:proto": "cpx ../server/service.proto lib/ --watch",
+    "lint": "eslint --ext .ts,.tsx . 1>&2",
+    "build-code": "tsc 1>&2",
+    "clean": "rimraf lib"
+  },
+  "repository": {},
+  "dependencies": {
+    "@grpc/proto-loader": "^0.5.5",
+    "@typescript-eslint/eslint-plugin": "^3.8.0",
+    "@typescript-eslint/parser": "^3.8.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-simple-import-sort": "^5.0.3",
+    "grpc": "^1.24.3",
+    "grpc-web": "^1.2.0",
+    "typescript": "^3.9.7"
+  },
+  "devDependencies": {
+    "@types/node": "^10.14.1",
+    "concurrently": "^5.2.0",
+    "cpx": "^1.5.0",
+    "eslint": "^7.6.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
+    "prettier": "^2.0.5",
+    "rimraf": "^2.6.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "echo TODO: setup copyright linter",
+      "prettier --write",
+      "eslint --color --fix"
+    ],
+    "*.{md,json}": [
+      "prettier --write"
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "outDir": "./lib",
+    "baseUrl": "./node_modules/",
+    //"moduleResolution": "node",
+    "types": ["node"]
+  },
+  "include": ["./src/**/*.ts"]
+}

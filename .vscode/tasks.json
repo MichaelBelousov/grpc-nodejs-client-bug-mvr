@@ -1,0 +1,42 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "npm",
+      "script": "build",
+      "path": "client/",
+      "problemMatcher": ["$tsc"],
+      "group": "build",
+      "label": "npm: build - node",
+      "detail": "concurrently npm:build:ts npm:build:proto"
+    },
+    {
+      "type": "npm",
+      "script": "watch:ts",
+      "path": "client/",
+      "problemMatcher": ["$tsc-watch"],
+      "group": "build",
+      "label": "npm: watch:ts - node",
+      "detail": "tsc -b -w",
+      "isBackground": true
+    },
+    {
+      "type": "npm",
+      "script": "watch:proto",
+      "path": "client/",
+      "problemMatcher": {
+        "pattern": [
+          {
+            "regexp": "^([^\\\\s].*)\\\\((\\\\d+,\\\\d+)\\\\):\\\\s*(.*)$",
+            "file": 1,
+            "location": 2,
+            "message": 3
+          }
+        ]
+      },
+      "group": "build",
+      "label": "npm: watch:proto - node",
+      "isBackground": true
+    }
+  ]
+}

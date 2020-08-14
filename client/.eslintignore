@@ -1,0 +1,8 @@
+node_modules/**
+ie.js
+**/imjs_extensions/**
+packages/apps/**/oidc-client.min.js
+*.pb.d.ts
+*.pb.d.js
+*_pb.d.ts
+*_pb.d.js

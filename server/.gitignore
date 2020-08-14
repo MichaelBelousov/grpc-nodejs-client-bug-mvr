@@ -1,0 +1,16 @@
+# protobuf generated
+*.pb.*
+
+# c++ obj
+*.o
+
+
+# vs stuff (TODO: use official .gitignore)
+out
+.vs
+
+# cmake
+CMakeCache.txt
+
+# ?
+enc_temp_folder

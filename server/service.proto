@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package Mvr;
+
+service MyService {
+  rpc SayA (MessageA) returns (Empty) {}
+  rpc SayB (MessageB) returns (Empty) {}
+}
+
+message MessageA {
+  string name = 1;
+}
+
+message MessageB {
+  string name = 1;
+  bytes data = 2;
+}
+
+
+message Empty {}
